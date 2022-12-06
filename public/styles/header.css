@@ -1,0 +1,21 @@
+header {
+  background-color: #1ea1f2;
+background-image: url("https://www.transparenttextures.com/patterns/binding-dark.png");
+    height: 400px;
+  width: 100%;
+  margin-top: 120px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.avatarName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
