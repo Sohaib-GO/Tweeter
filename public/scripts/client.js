@@ -4,16 +4,14 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function () {
-
-  const escape = function (str) {
+$(document).ready(function() {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
-  
 
-  const createTweetElement = function (tweet) {
+  const createTweetElement = function(tweet) {
     const $tweet = $(`
     <article class="tweet">
     <header class="tweet-header">
@@ -44,37 +42,53 @@ $(document).ready(function () {
     return $tweet;
   };
 
-  const renderTweets = function (tweets) {
+  const renderTweets = function(tweets) {
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $(".tweetContainer").prepend($tweet);
     }
   };
 
-  const loadTweets = function () {
+  const loadTweets = function() {
     $.ajax({
       url: "/tweets",
       method: "GET",
     })
       //success callback function will simply call up renderTweets, passing it the response from the AJAX request.
-      .then(function (response) {
+      .then(function(response) {
         console.log("response ajax", response);
         renderTweets(response);
       });
   };
 
-  $("#tweet-form").submit(function (event) {
+  $("#tweet-form").submit(function(event) {
     event.preventDefault();
     const tweet = $(this).serialize();
     console.log("tweet text", tweet);
     const textArea = $("#tweet-text").val();
 
     if (textArea.length > 140) {
-      return $(".tooLong").text("Too many characters");
+      $("#empty-error").slideUp();
+      $("#too-long-error")
+        .slideDown()
+        .text("Bruhhh, Limit Your Tweet To 140 Characters Only");
+      $("#too-long-error").addClass("error-button");
+      // hide error message after validation is done
+
+      return;
     }
 
     if (textArea === "" || textArea === null) {
-      return $(".tooLong").text("Please enter a tweet");
+      $("#too-long-error").slideUp();
+      //display error
+      $("#empty-error")
+        .slideDown()
+        .text(
+          "C'mon, Your Mind Can Be Empty But Your Tweet Cannot, Write SomeThing!"
+        );
+      $("#empty-error").addClass("error-button");
+      $("#empty-error").show();
+      return;
     }
 
     $.ajax({
@@ -82,15 +96,15 @@ $(document).ready(function () {
       method: "POST",
       data: tweet,
     })
-      .then(function (response) {
+      .then(function(response) {
         console.log("response ajax", response);
       })
       // post tweets without refreshing the page
       .then(function() {
+        $("#too-long-error").slideUp(); // hide error message after validation is done
+        $("#empty-error").slideUp(); // hide error message after validation is done
         loadTweets();
       });
   });
   loadTweets();
-
 });
-
