@@ -4,10 +4,10 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
+$(document).ready(function () {
   const data = [];
 
-  const createTweetElement = function(tweet) {
+  const createTweetElement = function (tweet) {
     const $tweet = $(`
     <article class="tweet">
     <header class="tweet-header">
@@ -38,7 +38,7 @@ $(document).ready(function() {
     return $tweet;
   };
 
-  const renderTweets = function(tweets) {
+  const renderTweets = function (tweets) {
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $(".tweetContainer").prepend($tweet);
@@ -47,27 +47,36 @@ $(document).ready(function() {
 
   renderTweets(data);
 
-  $("#tweet-form").submit(function(event) {
+  $("#tweet-form").submit(function (event) {
     event.preventDefault();
     const tweet = $(this).serialize();
     console.log("tweet text", tweet);
+    const textArea = $("#tweet-text").val();
+
+    if (textArea.length > 140) {
+      return $(".tooLong").text("Too many characters");
+    }
+
+    if (textArea === "" || textArea === null) {
+      return $(".tooLong").text("Please enter a tweet");
+    }
 
     $.ajax({
       url: "/tweets",
       method: "POST",
       data: tweet,
-    }).then(function(response) {
+    }).then(function (response) {
       console.log("response ajax", response);
     });
   });
 
-  const loadTweets = function() {
+  const loadTweets = function () {
     $.ajax({
       url: "/tweets",
       method: "GET",
     })
       //success callback function will simply call up renderTweets, passing it the response from the AJAX request.
-      .then(function(response) {
+      .then(function (response) {
         console.log("response ajax", response);
         renderTweets(response);
       });
