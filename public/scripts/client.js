@@ -45,7 +45,17 @@ $(document).ready(function () {
     }
   };
 
-  renderTweets(data);
+  const loadTweets = function () {
+    $.ajax({
+      url: "/tweets",
+      method: "GET",
+    })
+      //success callback function will simply call up renderTweets, passing it the response from the AJAX request.
+      .then(function (response) {
+        console.log("response ajax", response);
+        renderTweets(response);
+      });
+  };
 
   $("#tweet-form").submit(function (event) {
     event.preventDefault();
@@ -65,22 +75,15 @@ $(document).ready(function () {
       url: "/tweets",
       method: "POST",
       data: tweet,
-    }).then(function (response) {
-      console.log("response ajax", response);
-    });
-  });
-
-  const loadTweets = function () {
-    $.ajax({
-      url: "/tweets",
-      method: "GET",
     })
-      //success callback function will simply call up renderTweets, passing it the response from the AJAX request.
       .then(function (response) {
         console.log("response ajax", response);
-        renderTweets(response);
+      })
+      // post tweets without refreshing the page
+      .then(function() {
+        loadTweets();
       });
-  };
-
+  });
   loadTweets();
+
 });
