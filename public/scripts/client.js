@@ -5,7 +5,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
-  const data = [];
+
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+  
 
   const createTweetElement = function (tweet) {
     const $tweet = $(`
@@ -15,15 +21,15 @@ $(document).ready(function () {
         <img src="${tweet.user.avatars}">
       </div>
       <div class="name">
-        <h4>${tweet.user.name}</h4>
-        <p>${tweet.user.handle}</p>
+        <h4>${escape(tweet.user.name)}</h4>
+        <p>${escape(tweet.user.handle)}</p>
       </div>
       <div class="handle">
         <p>${timeago.format(tweet.created_at)}</p>
       </div>
     </header>
     <div class="tweet-body">
-      <p>${tweet.content.text}</p>
+      <p>${escape(tweet.content.text)}</p>
     </div>
     <footer class="tweet-footer">
       <div class="icons">
@@ -87,3 +93,4 @@ $(document).ready(function () {
   loadTweets();
 
 });
+
