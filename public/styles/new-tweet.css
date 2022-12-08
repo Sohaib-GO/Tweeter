@@ -35,7 +35,6 @@
 
 .tweet-button:hover {
   background-color: #0199f8;
-  color: black;
 }
 .counter {
   margin-left: 23.5rem;
@@ -46,15 +45,18 @@
 }
 
 /* style the tweet  */
-.tweetContainer{
+
+.tweetContainer {
+  /* background-color: red; */
   margin-top: 2rem;
 }
+
 .tweet {
   display: flex;
   flex-direction: column;
   width: 62%;
   margin: auto;
-  padding: 1rem 5rem;
+  padding: 1rem 2rem;
   border: 0.1rem solid #545149;
   border-radius: 0.5rem;
   margin-bottom: 5rem;
@@ -74,8 +76,9 @@
 .tweet-header img {
   width: 2rem;
   height: 2rem;
-  margin-right: 1rem;
+  margin-right: 0;
   font-size: 2rem;
+  margin-top: 1rem;
 }
 
 .tweet-body {
@@ -88,6 +91,14 @@
   color: #545149;
   justify-content: flex-end;
   
+}
+.name {
+  margin-right: 9rem;
+ }
+
+.name h4 {
+  margin-bottom: 0;
+
 }
 
 .name p {
