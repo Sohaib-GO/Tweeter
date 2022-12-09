@@ -13,11 +13,19 @@
   display: block;
   height: 5rem;
   width: 100%;
-  background-color: #f4f1ec;
+  background-color: #797e81;
   border: none;
   border-bottom: 0.1em solid #545149;
   outline: none;
   resize: none;
+}
+input, select, textarea{
+  color: #ffffff;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #4056a1;
+  font-weight: 600
 }
 
 .tweet-info {
@@ -30,12 +38,11 @@
   /* margin: 1rem; */
   margin-right: 2rem;
   color: #ffff;
-  background-color: #1ea1f2;
+  background-color: #4056a1;
   border-radius: 15%;
 }
 
 .tweet-button:hover {
-  background-color: #0199f8;
   color: black;
 }
 .counter {
@@ -58,6 +65,8 @@
   border-radius: 0.5rem;
   margin-bottom: 5rem;
   margin-left: 12rem;
+  background-color: #4056a1;
+  color: white;
 }
 .tweet:hover {
   box-shadow: 0 0 0.5rem 0.1rem #545149;
@@ -76,6 +85,8 @@
   margin-right: 0;
   font-size: 2rem;
   margin-top: 1rem;
+  background-color: white;
+  border-radius: 100%;
 }
 
 .tweet-body {
@@ -85,8 +96,10 @@
 }
 .handle p {
   font-size: 0.8rem;
-  color: #545149;
+  font-weight: 800;
+  color: #797e81;
   justify-content: flex-end;
+  
 }
 .name {
   margin-right: 9rem;
@@ -104,6 +117,11 @@
   justify-content: center;
 }
 
+.tweet-footer i {
+background-color: transparent;  
+color: #11235d;
+}
+
 .tweet-footer i:hover {
   color: #953121;
 }
@@ -114,11 +132,6 @@
   align-items: center;
 }
 
-.tweet-footer p {
-  font-size: 0.8rem;
-  color: #545149;
-  margin: 0;
-}
 
 .tweet-footer i {
   font-size: 1.2rem;
@@ -140,19 +153,19 @@
 /* ----ERROR BUTTON STYLING---- */
 .error-button {
   align-items: center;
-  background-color: #9f7277;
+  background-color: red;
   border: 2px solid #5d111a;
   border-radius: 3px;
-  box-shadow: 7px 9px #5d111a;
-  box-sizing: border-box;
-  color: #5d111a;
+  box-shadow: 7px 9px #584f4f;
+  box-sizing: border-box; 
+  color: #11235d;
   cursor: pointer;
   display: flex;
   font-family: "Source Sans Pro", sans-serif;
 
   text-shadow: 3px 3px black;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   height: 55px;
   justify-content: center;
   line-height: 24px;
