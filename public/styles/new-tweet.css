@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  padding-bottom: 1em;
-  margin-left: 7rem;
+  margin-left: 8rem;
+  margin-top: 2rem;
   width: 60%;
 }
 
@@ -31,10 +31,12 @@
   margin-right: 2rem;
   color: #ffff;
   background-color: #1ea1f2;
+  border-radius: 15%;
 }
 
 .tweet-button:hover {
   background-color: #0199f8;
+  color: black;
 }
 .counter {
   margin-left: 23.5rem;
@@ -46,21 +48,16 @@
 
 /* style the tweet  */
 
-.tweetContainer {
-  /* background-color: red; */
-  margin-top: 2rem;
-}
-
 .tweet {
   display: flex;
   flex-direction: column;
-  width: 62%;
+  width: 65%;
   margin: auto;
   padding: 1rem 2rem;
   border: 0.1rem solid #545149;
   border-radius: 0.5rem;
   margin-bottom: 5rem;
-  margin-left: 13.5rem;
+  margin-left: 12rem;
 }
 .tweet:hover {
   box-shadow: 0 0 0.5rem 0.1rem #545149;
@@ -90,15 +87,13 @@
   font-size: 0.8rem;
   color: #545149;
   justify-content: flex-end;
-  
 }
 .name {
   margin-right: 9rem;
- }
+}
 
 .name h4 {
   margin-bottom: 0;
-
 }
 
 .name p {
@@ -107,11 +102,6 @@
   margin: 0;
   display: flex;
   justify-content: center;
-}
-.name h2 {
-  font-size: 2rem;
-  color: black;
-  margin: 0 2rem;
 }
 
 .tweet-footer i:hover {
@@ -147,7 +137,6 @@
   color: red;
 }
 
-
 /* ----ERROR BUTTON STYLING---- */
 .error-button {
   align-items: center;
@@ -159,7 +148,7 @@
   color: #5d111a;
   cursor: pointer;
   display: flex;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 
   text-shadow: 3px 3px black;
   color: white;
@@ -175,4 +164,155 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+
+/* ---- RESPONSIVE STYLING ---- */
+
+/* ---- desktop ---- */
+@media only screen and (min-width: 1024px) {
+  .mainHeader {
+    height: 17rem;
+    width: 26rem;
+    margin-left: 4rem;
+    margin-top: 12rem;
+  }
+  .container {
+    margin-top: 5rem;
+    display: flex;
+    justify-items: center;
+  }
+  .new-tweet {
+    margin-right: 6.2rem;
+    margin-top: 6.9rem;
+    width: 30rem ;
+  }
+
+  .tweetContainer {
+    margin-right: 8rem;
+  }
+  .tweet {
+    width: 63%;
+    margin-left: 13rem;
+  }
+  .tweet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10px;
+    margin-top: 0;
+  }
+
+  .name h4 {
+    margin-left: 10px;
+  }
+.counter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+
+/* ---- tablet ---- */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .mainHeader {
+    height: 17rem;
+    width: 100%;
+    
+  }
+  .navWrite{
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+  .navWrite i {
+    margin-left: 4rem;
+  }
+  .new-tweet {
+    width: 80% ;
+  }
+
+  .tweetContainer {
+    margin-right: 8rem;
+  }
+  .tweet {
+    width: 100%;
+    margin-left: 8rem;
+  }
+  .tweet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10px;
+    margin-top: 0;
+  }
+
+  .name h4 {
+    margin-left: 10px;
+  }
+
+  .tweet-button {
+font-size: 1.4rem;  }
+.counter {
+  display: flex;
+  justify-content: flex-end;
+}
+}
+
+
+/* ---- mobile ---- */
+@media  only screen and (max-width: 767px) {
+  .mainHeader {
+    height: 17rem;
+    width: 100%;
+  }
+  .navWrite{
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+  .navWrite i {
+    margin-left: 1rem;
+  }
+  .new-tweet {
+    width: 95% ;
+    margin-left: 0;
+  }
+
+  .tweetContainer {
+    margin-right: 8rem;
+
+  }
+  .tweet {
+    width: 72%;
+    margin-left: 10rem;
+  }
+  .tweet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10px;
+    margin-top: 0;
+  }
+
+  .name h4 {
+    margin-left: 10px;
+  }
+
+  .tweet-button {
+font-size: 1.4rem;  
+}
+.counter {
+  display: flex;
+  justify-content: flex-end;
+}
 }
