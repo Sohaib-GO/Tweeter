@@ -5,15 +5,13 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function() {
-  const escape = function(str) {
-    // prevent cross-site scripting
+  const escape = function(str) { // prevent cross-site scripting
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  const createTweetElement = function(tweet) {
-    // create tweet element
+  const createTweetElement = function(tweet) { // create tweet element
     const $tweet = $(`
     <article class="tweet">
     <header class="tweet-header">
@@ -44,28 +42,25 @@ $(document).ready(function() {
     return $tweet;
   };
 
-  const renderTweets = function(tweets) {
-    // render tweets
+  const renderTweets = function(tweets) { // render tweets
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $(".tweetContainer").prepend($tweet);
     }
   };
 
-  const loadTweets = function() {
-    // load tweets
+  const loadTweets = function() { // load tweets
     $.ajax({
       url: "/tweets",
       method: "GET",
-    }).then(function(response) {
-      // get tweets without refreshing the page
-      console.log("response ajax", response);
-      renderTweets(response);
-    });
+    })
+      .then(function(response) { // get tweets without refreshing the page
+        console.log("response ajax", response);
+        renderTweets(response);
+      });
   };
 
-  $("#tweet-form").submit(function(event) {
-    // submit tweet
+  $("#tweet-form").submit(function(event) { // submit tweet
     event.preventDefault();
     const tweet = $(this).serialize();
     console.log("tweet text", tweet);
@@ -95,8 +90,7 @@ $(document).ready(function() {
       return;
     }
 
-    $.ajax({
-      // post tweets without refreshing the page
+    $.ajax({ // post tweets without refreshing the page
       url: "/tweets",
       method: "POST",
       data: tweet,
@@ -108,6 +102,8 @@ $(document).ready(function() {
       .then(function() {
         $("#too-long-error").slideUp(); // hide error message after validation is done
         $("#empty-error").slideUp(); // hide error message after validation is done
+        $("#tweet-text").val(""); // clear text area after submit
+        $(".counter").text(140); // reset counter after submit
         loadTweets();
       });
   });
