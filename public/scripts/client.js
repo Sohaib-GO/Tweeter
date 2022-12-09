@@ -6,12 +6,14 @@
  */
 $(document).ready(function() {
   const escape = function(str) {
+    // prevent cross-site scripting
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
   const createTweetElement = function(tweet) {
+    // create tweet element
     const $tweet = $(`
     <article class="tweet">
     <header class="tweet-header">
@@ -43,6 +45,7 @@ $(document).ready(function() {
   };
 
   const renderTweets = function(tweets) {
+    // render tweets
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $(".tweetContainer").prepend($tweet);
@@ -50,18 +53,19 @@ $(document).ready(function() {
   };
 
   const loadTweets = function() {
+    // load tweets
     $.ajax({
       url: "/tweets",
       method: "GET",
-    })
-      //success callback function will simply call up renderTweets, passing it the response from the AJAX request.
-      .then(function(response) {
-        console.log("response ajax", response);
-        renderTweets(response);
-      });
+    }).then(function(response) {
+      // get tweets without refreshing the page
+      console.log("response ajax", response);
+      renderTweets(response);
+    });
   };
 
   $("#tweet-form").submit(function(event) {
+    // submit tweet
     event.preventDefault();
     const tweet = $(this).serialize();
     console.log("tweet text", tweet);
@@ -92,6 +96,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
+      // post tweets without refreshing the page
       url: "/tweets",
       method: "POST",
       data: tweet,
