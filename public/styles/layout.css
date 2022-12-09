@@ -36,3 +36,14 @@ nav {
   justify-content: center;
   width: 90%;
 }
+
+#toTop {
+  padding: 0.5em;
+  background-color: #4056a1;
+  color: #f4f1ec;
+  border-radius: 25px;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  display: none;
+}
