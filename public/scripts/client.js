@@ -33,7 +33,7 @@ $(document).ready(function() {
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-retweet"></i>
-        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-heart" ></i>
       </div>
     
     </footer>
@@ -83,7 +83,7 @@ $(document).ready(function() {
       $("#empty-error")
         .slideDown()
         .text(
-          "C'mon, Your Mind Can Be Empty But Your Tweet Cannot, Write SomeThing!"
+          "C'mon, Your Mind Can Be Empty But Your Tweet Cannot, Write Something!"
         );
       $("#empty-error").addClass("error-button");
       $("#empty-error").show();
