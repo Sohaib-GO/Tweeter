@@ -19,13 +19,16 @@
   outline: none;
   resize: none;
 }
-input, select, textarea{
+input,
+select,
+textarea {
   color: #ffffff;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-  color:    #4056a1;
-  font-weight: 600
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #4056a1;
+  font-weight: 600;
 }
 
 .tweet-info {
@@ -46,11 +49,13 @@ input, select, textarea{
   color: black;
 }
 .counter {
-  margin-left: 23.5rem;
+  margin-left: 13.8rem;
 }
 
 .tweetFooter {
   margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* style the tweet  */
@@ -58,7 +63,7 @@ input, select, textarea{
 .tweet {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 60%;
   margin: auto;
   padding: 1rem 2rem;
   border: 0.1rem solid #545149;
@@ -67,6 +72,10 @@ input, select, textarea{
   margin-left: 12rem;
   background-color: #4056a1;
   color: white;
+}
+
+.margin {
+  margin-left: -1.2rem;
 }
 .tweet:hover {
   box-shadow: 0 0 0.5rem 0.1rem #545149;
@@ -94,32 +103,40 @@ input, select, textarea{
   flex-direction: column;
   margin-top: 2rem;
 }
-.handle p {
+.time {
   font-size: 0.8rem;
   font-weight: 800;
   color: #797e81;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
-  
+  width: 230px;
+  margin-right: -2rem;
 }
 .name {
   margin-right: 9rem;
+  display: flex;
+  flex-direction: column;
+  width: 230px;
 }
 
 .name h4 {
   margin-bottom: 0;
+  width: 250px;
 }
 
 .name p {
   font-size: 0.8rem;
   color: #2c2323;
   margin: 0;
+  margin-left: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .tweet-footer i {
-background-color: transparent;  
-color: #11235d;
+  background-color: transparent;
+  color: #11235d;
 }
 
 .tweet-footer i:hover {
@@ -131,7 +148,6 @@ color: #11235d;
   justify-content: space-between;
   align-items: center;
 }
-
 
 .tweet-footer i {
   font-size: 1.2rem;
@@ -157,7 +173,7 @@ color: #11235d;
   border: 2px solid #5d111a;
   border-radius: 3px;
   box-shadow: 7px 9px #584f4f;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   color: #11235d;
   cursor: pointer;
   display: flex;
@@ -185,7 +201,7 @@ color: #11235d;
 @media only screen and (min-width: 1024px) {
   .mainHeader {
     height: 17rem;
-    width: 26rem;
+    width: 100%;
     margin-left: 4rem;
     margin-top: 12rem;
   }
@@ -197,15 +213,15 @@ color: #11235d;
   .new-tweet {
     margin-right: 9.2rem;
     margin-top: 6.9rem;
-    width: 55% ;
+    width: 55%;
   }
 
   .tweetContainer {
     margin-right: 8rem;
   }
   .tweet {
-    width: 63%;
-    margin-left: 13rem;
+    width: 64%;
+    margin-left: 12rem;
   }
   .tweet-header {
     display: flex;
@@ -218,11 +234,8 @@ color: #11235d;
   .name h4 {
     margin-left: 10px;
   }
-.counter {
-  display: flex;
-  justify-content: flex-end;
-}
-
+  .counter {
+  }
 
   body {
     display: flex;
@@ -230,16 +243,13 @@ color: #11235d;
   }
 }
 
-
 /* ---- tablet ---- */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .mainHeader {
     height: 17rem;
     width: 100%;
-    
   }
-  .navWrite{
-
+  .navWrite {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -249,15 +259,15 @@ color: #11235d;
     margin-left: 4rem;
   }
   .new-tweet {
-    width: 80% ;
+    width: 80%;
   }
 
   .tweetContainer {
     margin-right: 8rem;
   }
   .tweet {
-    width: 100%;
-    margin-left: 8rem;
+    width: 75%;
+    margin-left: 14rem;
   }
   .tweet-header {
     display: flex;
@@ -272,22 +282,25 @@ color: #11235d;
   }
 
   .tweet-button {
-font-size: 1.4rem;  }
-.counter {
-  display: flex;
-  justify-content: flex-end;
-}
-}
+    font-size: 1.4rem;
+  }
+  .counter {
+    display: flex;
+    justify-content: flex-end;
+  }
 
+  .time {
+    margin-right: -5rem;
+  }
+}
 
 /* ---- mobile ---- */
-@media  only screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .mainHeader {
     height: 17rem;
     width: 100%;
   }
-  .navWrite{
-
+  .navWrite {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -297,17 +310,16 @@ font-size: 1.4rem;  }
     margin-left: 1rem;
   }
   .new-tweet {
-    width: 95% ;
-    margin-left: 0;
+    width: 105%;
+    margin-left: 3rem;
   }
 
   .tweetContainer {
     margin-right: 8rem;
-
   }
   .tweet {
-    width: 72%;
-    margin-left: 10rem;
+    width: 75%;
+    margin-left: 10.8rem;
   }
   .tweet-header {
     display: flex;
@@ -320,12 +332,16 @@ font-size: 1.4rem;  }
   .name h4 {
     margin-left: 10px;
   }
+  .time {
+    margin-right: -7rem;
+  }
 
   .tweet-button {
-font-size: 1.4rem;  
-}
-.counter {
-  display: flex;
-  justify-content: flex-end;
-}
+    font-size: 1.4rem;
+  }
+  .counter {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 1rem;
+  }
 }
