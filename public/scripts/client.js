@@ -16,6 +16,7 @@ $(document).ready(function() {
     // create tweet element
     const $tweet = $(`
     <article class="tweet">
+  <div class="margin"> 
     <header class="tweet-header">
       <div class="tweet-pic">
         <img src="${tweet.user.avatars}">
@@ -24,7 +25,7 @@ $(document).ready(function() {
         <h4>${escape(tweet.user.name)}</h4>
         <p>${escape(tweet.user.handle)}</p>
       </div>
-      <div class="handle">
+      <div class="time">
         <p>${timeago.format(tweet.created_at)}</p>
       </div>
     </header>
@@ -39,6 +40,7 @@ $(document).ready(function() {
       </div>
     
     </footer>
+    </div>
     </article>
     `);
     return $tweet;
