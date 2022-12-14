@@ -4,15 +4,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
-  const escape = function(str) {
+$(document).ready(function () {
+  const escape = function (str) {
     // prevent cross-site scripting
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  const createTweetElement = function(tweet) {
+  const createTweetElement = function (tweet) {
     // create tweet element
     const $tweet = $(`
     <article class="tweet">
@@ -22,23 +22,24 @@ $(document).ready(function() {
         <img src="${tweet.user.avatars}">
       </div>
       <div class="name">
-        <h4>${escape(tweet.user.name)}</h4>
-        <p>${escape(tweet.user.handle)}</p>
+        <h4>${tweet.user.name}</h4>
+        <p>${tweet.user.handle}</p>
       </div>
-      <div class="time">
-        <p>${timeago.format(tweet.created_at)}</p>
-      </div>
+     
     </header>
     <div class="tweet-body">
       <p>${escape(tweet.content.text)}</p>
     </div>
     <footer class="tweet-footer">
+    <div class="time">
+        <p>${timeago.format(tweet.created_at)}</p>
+      </div>
       <div class="icons">
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-retweet"></i>
         <i class="fa-solid fa-heart" ></i>
       </div>
-    
+     
     </footer>
     </div>
     </article>
@@ -46,8 +47,9 @@ $(document).ready(function() {
     return $tweet;
   };
 
-  const renderTweets = function(tweets) {
+  const renderTweets = function (tweets) {
     // render tweets
+    $(".tweetContainer").empty(); // clear tweets before rendering
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $(".tweetContainer").prepend($tweet);
@@ -55,7 +57,7 @@ $(document).ready(function() {
   };
 
   // Scroll function
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     // scroll to top button, fade in and out
     if ($(this).scrollTop()) {
       $("#toTop").fadeIn();
@@ -63,23 +65,27 @@ $(document).ready(function() {
       $("#toTop").fadeOut();
     }
   });
-  $("#toTop").click(function() {
+  $("#toTop").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 1000);
   });
 
-  const loadTweets = function() {
+  const loadTweets = function () {
     // load tweets
     $.ajax({
       url: "/tweets",
       method: "GET",
-    }).then(function(response) {
-      // get tweets without refreshing the page
-      console.log("response ajax", response);
-      renderTweets(response);
-    });
+    })
+      .then(function (response) {
+        // get tweets without refreshing the page
+        console.log("response ajax", response);
+        renderTweets(response);
+      })
+      .catch(function (err) {
+        console.log("Error catch! (GET)", err);
+      });
   };
 
-  $("#tweet-form").submit(function(event) {
+  $("#tweet-form").submit(function (event) {
     // submit tweet
     event.preventDefault();
     const tweet = $(this).serialize();
@@ -116,16 +122,19 @@ $(document).ready(function() {
       method: "POST",
       data: tweet,
     })
-      .then(function(response) {
+      .then(function (response) {
         console.log("response ajax", response);
       })
       // post tweets without refreshing the page
-      .then(function() {
+      .then(function () {
         $("#too-long-error").slideUp(); // hide error message after validation is done
         $("#empty-error").slideUp(); // hide error message after validation is done
         $("#tweet-text").val(""); // clear text area after submit
         $(".counter").text(140); // reset counter after submit
         loadTweets();
+      })
+      .catch(function (err) {
+        console.log("Error catch!", err);
       });
   });
 
